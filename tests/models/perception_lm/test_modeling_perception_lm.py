@@ -294,18 +294,6 @@ class PerceptionLMForConditionalGenerationModelTest(ModelTesterMixin, Generation
     def test_can_init_all_missing_weights(self):
         pass
 
-    @unittest.skip(
-        reason="PE/TIMM's attention implementation is self configured and won't raise ValueError on global attention implementation."
-    )
-    def test_flash_attn_2_can_dispatch_composite_models(self):
-        pass
-
-    @unittest.skip(
-        "VLMs need lots of steps to prepare images/mask correctly to get pad-free inputs. Can be tested as part of LLM test"
-    )
-    def test_flash_attention_2_padding_matches_padding_free_with_position_ids(self):
-        pass
-
     @unittest.skip("ViT PE / TimmWrapperModel cannot be tested with meta device")
     def test_can_be_initialized_on_meta(self):
         pass
@@ -322,53 +310,10 @@ class PerceptionLMForConditionalGenerationModelTest(ModelTesterMixin, Generation
     def test_generate_from_inputs_embeds_with_static_cache(self):
         pass
 
-    ## Skip flash attention releated tests below
-    ## correct configuration:
-    ## from_pretrained(model_id, attn_implementation={"text_config": "flash_attention_2", "vision_config": "eager"}
-    @unittest.skip("Flash attn test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_eager_matches_fa2_generate(self):
-        pass
-
-    @unittest.skip("Flash attn test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_flash_attn_2_fp32_ln(self):
-        pass
-
-    @unittest.skip("Flash attn test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_flash_attn_2_from_config(self):
-        pass
-
-    @unittest.skip("SDPA test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_eager_matches_sdpa_generate_with_dynamic_cache(self):
-        pass
-
-    @unittest.skip("Flash attn test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_flash_attn_2_inference_equivalence_right_padding(self):
-        pass
-
-    @unittest.skip("SDPA test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_eager_matches_sdpa_generate(self):
-        pass
-
-    @unittest.skip("Flash attn test is not configured correctly as we need to configure vision/timm model to 'eager'.")
-    def test_flash_attn_2_inference_equivalence(self):
-        pass
-
     @unittest.skip(
         "PerceptionLMForConditionalGeneration does not have language_model, vision_tower, multi_modal_projector."
     )
     def test_sdpa_can_dispatch_composite_models(self):
-        pass
-
-    @unittest.skip("Cannot set `output_attentions` for timm models.")
-    def test_attention_outputs(self):
-        pass
-
-    @unittest.skip("Cannot set `output_attentions` for timm models.")
-    def test_retain_grad_hidden_states_attentions(self):
-        pass
-
-    @unittest.skip("Cannot set `output_attentions` for timm models.")
-    def test_generate_compilation_all_outputs(self):
         pass
 
 
